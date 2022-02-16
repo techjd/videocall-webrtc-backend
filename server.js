@@ -60,8 +60,9 @@ io.on('connection', (socket) => {
     }
   });
 
-  socket.on('bye', function () {
-    console.log('received bye');
+  socket.on('bye', function (msg) {
+    socket.broadcast.emit('out', msg);
+    console.log('received bye' + msg);
   });
 
   socket.on('disconnect', () => {
